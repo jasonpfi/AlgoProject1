@@ -108,23 +108,22 @@ int code::checkIncorrect(const code & guess) const
 	std::vector<int> checkedDigits;
 	int correctDigitIncorrectPosition = 0;
 
+
+  // TODO This should be pulled into helper function
+  for (int i = 0; i < this->codeLen; i++) {
+    if (guess.secret.at(i) == this->secret.at(i))
+      checkedDigits.push_back(i);
+  }
+
 	for (int i = 0; i < guess.codeLen; i++)
 	{
 		for (int j = 0; j < this->codeLen; j++)
 		{
-			if (!code::find(checkedDigits, j) && (this->secret.at(j) == guess.secret.at(i)))
+			if (j != i && !code::find(checkedDigits, j) && (this->secret.at(j) == guess.secret.at(i)))
 			{
-				if (j != i)
-				{
-					correctDigitIncorrectPosition++;
-					checkedDigits.push_back(j);
-					break;
-				}
-				else if (j == i)
-				{
-					checkedDigits.push_back(j);
-					break;
-				}
+				correctDigitIncorrectPosition++;
+				checkedDigits.push_back(j);
+				break;
 			}
 		}
 	}
