@@ -147,9 +147,11 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="code.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="code.cpp" />
     <ClCompile Include="fitsmu1a.cpp" />
   </ItemGroup>
   <ItemGroup>

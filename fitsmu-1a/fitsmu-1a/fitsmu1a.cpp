@@ -10,158 +10,15 @@
 *  - Another telling how many correct digits were in the wrong place
 */
 
-//#include "stdafx.h"
 #include <iostream>
 #include <stdlib.h>
 #include <vector>
 #include <time.h>
+#include "code.h"
 
 using namespace std;
 
-// Structure defining the output of checking the user code input
-//  compared to the secret code
-// correctDigitCorrectPlacement: how many digits were guessed in the
-//                                correct positions
-// correctDigitIncorrectPlacement: how many digits were guessed
-//                                  correctly in the incorrect positions
-struct codeGuess
-{
-	int correctDigitCorrectPlacement;
-	int correctDigitIncorrectPlacement;
-};
-
-// Main class defining a code, secret or user input
-// A code is defined by its length and the value of
-//  the maximum digit, as well as a vector defining the code
-class code
-{
-	int codeLen;
-	int maxDig;
-	std::vector<int> secret;
-
-public:
-
-	code();
-	code(int codeLen, int maxDig);
-
-	void generateSecretCode();
-	void printCode();
-	code generateUserCode();
-	bool checkValidity();
-	codeGuess checkUserInput(const code& userCode);
-	bool checkWin(const codeGuess& codeGuessOutput);
-};
-
-// Empty Constructor
-code::code()
-{
-	codeLen = 0;
-	maxDig = 0;
-}
-
-// Instantiating Constructor
-code::code(int codeLen, int maxDig)
-{
-	this->codeLen = codeLen;
-	this->maxDig = maxDig;
-}
-
-// Check if the correct digits in the correct place is equal to the length
-//  of the secret code. Then the code has been guessed
-// codeGuessOutput: the structure containing the output of checking the
-//                  user code against the secret code. Passed by reference
-//                  so the struct in the main funtion can be changed
-bool code::checkWin(const codeGuess& codeGuessOutput)
-{
-	if (codeGuessOutput.correctDigitCorrectPlacement == this->codeLen)
-		return true;
-	else
-		return false;
-}
-
-// TODO Write the Algoritm
-codeGuess code::checkUserInput(const code& userCode)
-{
-	codeGuess codeGuessOutput;
-	codeGuessOutput.correctDigitCorrectPlacement = 0;
-	codeGuessOutput.correctDigitIncorrectPlacement = 0;
-
-	return codeGuessOutput;
-
-	for (int i = 0; i < this->codeLen; i++)
-	{
-
-	}
-}
-
-// Check if the User input code is of correct parameters: i.e.
-//  the maximum user input digit is <= the maximum digit defined
-//  in the secret code
-bool code::checkValidity()
-{
-	for (int i = 0; i < this->codeLen; i++)
-	{
-		if (this->secret.at(i) > this->maxDig)
-			return false;
-	}
-
-	return true;
-}
-
-// Creates the vector containing the user code by asking for
-//  user input
-code code::generateUserCode()
-{
-	code userCode(this->codeLen, this->maxDig);
-	userCode.secret.resize(this->codeLen);
-
-	for (int i = 0; i < this->codeLen; i++)
-	{
-		std::cout << "Digit " << i << ": ";
-		std::cin >> userCode.secret.at(i);
-	}
-
-	return userCode;
-}
-
-// Creates the secret code based on the previous user input,
-//  defining the maximum digit and the code length. The rand()
-//  funtion is used to create a random code
-void code::generateSecretCode()
-{
-	int randomNumber;
-
-	for (int i = 0; i < this->codeLen; i++)
-	{
-		randomNumber = rand() % this->maxDig;
-		this->secret.push_back(randomNumber);
-	}
-}
-
-// Print the code, used for error checking
-void code::printCode()
-{
-	for (int i = 0; i < this->secret.size(); i++)
-	{
-		std::cout << this->secret.at(i) << ", ";
-	}
-	std::cout << std::endl;
-}
-
-code acceptInput()
-{
-
-	int codeLength;
-	int maxDigit;
-
-	std::cout << "Welcome to the MASTERMIND Game!\n";
-	std::cout << "Please enter the desired length of the secret code: ";
-	std::cin >> codeLength;
-	std::cout << "Please enter the maximum digit you want to be in the secret code: ";
-	std::cin >> maxDigit;
-
-	return code(codeLength, maxDigit);
-}
+code acceptInput();
 
 // Main funtion, entry point of program
 int main()
@@ -170,8 +27,8 @@ int main()
 	srand(time(NULL));
 
 	// Accept user Input and create secret code object
+	cout << "Welcome to the MASTERMIND Game!\n";
 	code secretCode = acceptInput();
-	secretCode.generateSecretCode();
 
 	// secretCode.printCode();
 
@@ -215,3 +72,24 @@ int main()
 	return 0;
 }
 
+code acceptInput()
+{
+
+	int codeLength;
+	int maxDigit;
+
+	cout << "Please enter the desired length of the secret code: ";
+	cin >> codeLength;
+	cout << "Please enter the maximum digit you want to be in the secret code: ";
+	cin >> maxDigit;
+
+	if (codeLength <= 0 || maxDigit <= 0)
+	{
+		cout << "One or both of the values you entered were not valid. Please choose two non negative integers." << endl;
+		return acceptInput();
+	}
+	else
+	{
+		return code(codeLength, maxDigit);
+	}
+}
