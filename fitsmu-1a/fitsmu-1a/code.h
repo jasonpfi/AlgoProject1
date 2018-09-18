@@ -25,20 +25,21 @@ public:
 
 	code();
 	code(int codeLen, int maxDig);
+	code(const std::vector<int>& secret, const int& maxDigit);
 
-	void printCode();
+	void printCode() const;
 	code generateUserCode();
-	bool checkValidity();
-	int checkCorrect(const code& guess);
-	int checkIncorrect(const code& guess);
-	codeGuess checkUserInput(const code& userCode);
-	bool checkWin(const codeGuess& codeGuessOutput);
-  static bool find(const std::vector<int>& v, int digit);
+	bool checkValidity() const;
+	int checkCorrect(const code& guess) const;
+	int checkIncorrect(const code& guess) const;
+	codeGuess checkUserInput(const code& userCode) const;
+	bool checkWin(const codeGuess& codeGuessOutput) const;
+	static bool find(const std::vector<int>& v, const int& digit);
 
 private:
 
 	int codeLen;
 	int maxDig;
-  std::vector<int> secret;
+	std::vector<int> secret;
 	void generateSecretCode();
 };
