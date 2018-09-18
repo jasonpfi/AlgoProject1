@@ -16,8 +16,6 @@
 #include <time.h>
 #include "code.h"
 
-using namespace std;
-
 code acceptInput();
 
 // Main funtion, entry point of program
@@ -27,7 +25,7 @@ int main()
 	srand(time(NULL));
 
 	// Accept user Input and create secret code object
-	cout << "Welcome to the MASTERMIND Game!\n";
+  std::cout << "Welcome to the MASTERMIND Game!\n";
 	code secretCode = acceptInput();
 
 	// secretCode.printCode();
@@ -78,14 +76,14 @@ code acceptInput()
 	int codeLength;
 	int maxDigit;
 
-	cout << "Please enter the desired length of the secret code: ";
-	cin >> codeLength;
-	cout << "Please enter the maximum digit you want to be in the secret code: ";
-	cin >> maxDigit;
+  std::cout << "Please enter the desired length of the secret code: ";
+  std::cin >> codeLength;
+  std::cout << "Please enter the maximum digit you want to be in the secret code: ";
+  std::cin >> maxDigit;
 
 	if (codeLength <= 0 || maxDigit <= 0)
 	{
-		cout << "One or both of the values you entered were not valid. Please choose two non negative integers." << endl;
+    std::cout << "One or both of the values you entered were not valid. Please choose two non negative integers." << endl;
 		return acceptInput();
 	}
 	else

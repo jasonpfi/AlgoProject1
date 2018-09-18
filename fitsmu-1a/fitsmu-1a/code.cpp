@@ -33,7 +33,7 @@ bool code::checkWin(const codeGuess& codeGuessOutput)
 codeGuess code::checkUserInput(const code& userCode)
 {
 	codeGuess codeGuessOutput;
-	codeGuessOutput.correctDigitCorrectPlacement = 0;
+	codeGuessOutput.correctDigitCorrectPlacement = checkCorrect(userCode);
 	codeGuessOutput.correctDigitIncorrectPlacement = 0;
 
 	return codeGuessOutput;
