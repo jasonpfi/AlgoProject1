@@ -28,7 +28,7 @@ int main()
   std::cout << "Welcome to the MASTERMIND Game!\n";
 	code secretCode = acceptInput();
 
-	// secretCode.printCode();
+	secretCode.printCode();
 
 	// create user input code object
 	code userCode;
@@ -83,7 +83,7 @@ code acceptInput()
 
 	if (codeLength <= 0 || maxDigit <= 0)
 	{
-    std::cout << "One or both of the values you entered were not valid. Please choose two non negative integers." << endl;
+    std::cout << "One or both of the values you entered were not valid. Please choose two non negative integers." << std::endl;
 		return acceptInput();
 	}
 	else

@@ -4,7 +4,6 @@
 #include <vector>
 #include <time.h>
 
-using namespace std;
 // Structure defining the output of checking the user code input
 //  compared to the secret code
 // correctDigitCorrectPlacement: how many digits were guessed in the
@@ -34,11 +33,12 @@ public:
 	int checkIncorrect(const code& guess);
 	codeGuess checkUserInput(const code& userCode);
 	bool checkWin(const codeGuess& codeGuessOutput);
+  static bool find(const std::vector<int>& v, int digit);
 
 private:
 
 	int codeLen;
 	int maxDig;
-	vector<int> secret;
+  std::vector<int> secret;
 	void generateSecretCode();
 };

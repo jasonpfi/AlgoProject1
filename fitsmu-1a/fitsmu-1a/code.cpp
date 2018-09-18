@@ -5,7 +5,7 @@ code::code()
 {
 	codeLen = 1;
 	maxDig = 1;
-	generateSecretCode()
+	generateSecretCode();
 }
 
 // Instantiating Constructor
@@ -14,6 +14,15 @@ code::code(int codeLen, int maxDig)
 	this->codeLen = codeLen;
 	this->maxDig = maxDig;
 	generateSecretCode();
+}
+
+// Check if the passed integer is contained in the vector
+bool code::find(const std::vector<int>& v, int digit) {
+ for (int i = 0; i < v.size(); i++) {
+    if (v.at(i) == digit)
+      return true;
+ }
+ return false;
 }
 
 // Check if the correct digits in the correct place is equal to the length
@@ -34,14 +43,10 @@ codeGuess code::checkUserInput(const code& userCode)
 {
 	codeGuess codeGuessOutput;
 	codeGuessOutput.correctDigitCorrectPlacement = checkCorrect(userCode);
-	codeGuessOutput.correctDigitIncorrectPlacement = 0;
+	codeGuessOutput.correctDigitIncorrectPlacement = checkIncorrect(userCode);
 
 	return codeGuessOutput;
 
-	for (int i = 0; i < codeLen; i++)
-	{
-
-	}
 }
 
 // Check if the User input code is of correct parameters: i.e.
@@ -51,7 +56,7 @@ bool code::checkValidity()
 {
 	for (int i = 0; i < codeLen; i++)
 	{
-		if (secret.at(i) > maxDig)
+		if (this->secret.at(i) > maxDig)
 			return false;
 	}
 
@@ -79,17 +84,37 @@ code code::generateUserCode()
 int code::checkCorrect(const code & guess)
 {
 	int correct = 0;
-	for (int i = 0; i < secret.size(); i++)
+	for (int i = 0; i < this->secret.size(); i++)
 	{
-		if (guess.secret.at(i) == secret.at(i))
+		if (guess.secret.at(i) == this->secret.at(i))
 			correct++;
 	}
+
 	return correct;
 }
 
 int code::checkIncorrect(const code & guess)
 {
-	return 0;
+  // Array containing digits already checked in the secret code
+  std::vector<int> checkedDigits;
+  int correctDigitIncorrectPosition = 0;
+
+  for (int i = 0; i < guess.codeLen; i++) {
+    for (int j = 0; j < this->codeLen; j++) {
+      if (!code::find(checkedDigits, j) && (this->secret.at(j) == guess.secret.at(i))) {
+        if (j != i) {
+          correctDigitIncorrectPosition++;
+          checkedDigits.push_back(j);
+          break;
+        }
+        else if (j == i) {
+          checkedDigits.push_back(j);
+          break;
+        }
+      }
+    }
+  }
+	return correctDigitIncorrectPosition;
 }
 
 // Creates the secret code based on the previous user input,
