@@ -34,7 +34,7 @@ int main()
 	auto c = secretCode.checkUserInput(code({ 1,3,3,4,5 }, 9));
 
 	std::cout << "5, 0, 3, 2, 6  (" << a.correctDigitCorrectPlacement << ", " << a.correctDigitIncorrectPlacement << ")" << std::endl;
-	std::cout << "1, 1, 2, 2, 2  (" << b.correctDigitCorrectPlacement << ", " << b.correctDigitIncorrectPlacement << ")" << std::endl;
+	std::cout << "2, 1, 2, 2, 2  (" << b.correctDigitCorrectPlacement << ", " << b.correctDigitIncorrectPlacement << ")" << std::endl;
 	std::cout << "1, 3, 3, 4, 5  (" << c.correctDigitCorrectPlacement << ", " << c.correctDigitIncorrectPlacement << ")" << std::endl;
 
 	std::cin.get();

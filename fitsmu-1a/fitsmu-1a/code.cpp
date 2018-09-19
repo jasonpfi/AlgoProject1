@@ -159,12 +159,14 @@ void code::checkCorrectForIncorrect(std::vector<int>& checkedDigits,const code& 
 int code::checkIncorrect(const code& guess) const
 {
 	// Array containing digits already checked in the secret code
-	std::vector<int> checkedDigits;
-	int correctDigitIncorrectPosition = 0;
+	std::vector<int> checkedDigitsSecret;
+  std::vector<int> checkedDigitsUser;
+  int correctDigitIncorrectPosition = 0;
 
   // Called to preallocate all indices that have correct guesses in
   //  correct positions
-  this->checkCorrectForIncorrect(checkedDigits, guess);
+  this->checkCorrectForIncorrect(checkedDigitsSecret, guess);
+  this->checkCorrectForIncorrect(checkedDigitsUser, guess);
 
   // Loop to check through both the user guess and the secret code and
   //  compare their digits
@@ -172,10 +174,11 @@ int code::checkIncorrect(const code& guess) const
 	{
 		for (int j = 0; j < this->codeLen; j++)
 		{
-			if (j != i && !code::find(checkedDigits, j) && (this->secret.at(j) == guess.secret.at(i)))
+			if (j != i && !code::find(checkedDigitsSecret, j) && !code::find(checkedDigitsUser, i) && (this->secret.at(j) == guess.secret.at(i)))
 			{
 				correctDigitIncorrectPosition++;
-				checkedDigits.push_back(j);
+				checkedDigitsSecret.push_back(j);
+        checkedDigitsUser.push_back(i);
 				break; // necessary to not count multiple instances of digit placed incorrectly
 			}
 		}
