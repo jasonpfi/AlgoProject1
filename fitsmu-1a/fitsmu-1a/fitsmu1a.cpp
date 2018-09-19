@@ -1,14 +1,20 @@
-/** fitsmu1a.cpp : Defines the entry point for the console application.
-* This is the Mastermind game
-* The Codemaker will create a secret code based on the input from the code breaker
-* The Codebreaker must enter 2 digits:
-*   - One defining the code length
-*   - Another defining the range of digits
-* The Codebreaker will then have 10 guesses to enter the secret code
-* After each guess the Codemaker will output 2 digits
-*  - One telling how many digits were in the correct place
-*  - Another telling how many correct digits were in the wrong place
-*/
+// Project 1a
+//
+// Team: fitsmu
+// Justin Fitch
+// Sam Smucny
+//
+// fitsmu1a.cpp : Defines the entry point for the console application.
+// This is the Mastermind game
+// The Codemaker will create a secret code based on the input from the code breaker
+// The Codebreaker must enter 2 digits:
+//  - One defining the code length
+//  - Another defining the range of digits
+// The Codebreaker will then have 10 guesses to enter the secret code
+// After each guess the Codemaker will output 2 digits
+//  - One telling how many digits were in the correct place
+//  - Another telling how many correct digits were in the wrong place
+
 
 #include <iostream>
 #include <stdlib.h>
@@ -44,6 +50,8 @@ int main()
 }
 
 code acceptInput()
+// Read data from User's keyboard to initialize the code.
+// Asks the user multiple again if input is invalid.
 {
 
 	int codeLength;

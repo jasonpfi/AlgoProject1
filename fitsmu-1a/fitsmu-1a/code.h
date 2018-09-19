@@ -1,25 +1,33 @@
+// Project 1a
+//
+// Team: fitsmu
+// Justin Fitch
+// Sam Smucny
+//
+// code.h: header file for code class and code Guess
+
 #pragma once
 #include <iostream>
 #include <stdlib.h>
 #include <vector>
 #include <time.h>
 
+struct codeGuess
 // Structure defining the output of checking the user code input
 // compared to the secret code
 // correctDigitCorrectPlacement: how many digits were guessed in the
 //                                correct positions
 // correctDigitIncorrectPlacement: how many digits were guessed
 //                                  correctly in the incorrect positions
-struct codeGuess
 {
 	int correctDigitCorrectPlacement;
 	int correctDigitIncorrectPlacement;
 };
 
+class code
 // Main class defining a code, secret or user input
 // A code is defined by its length and the value of
 // the maximum digit, as well as a vector defining the code
-class code
 {
 public:
 
