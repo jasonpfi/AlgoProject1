@@ -46,7 +46,8 @@ private:
 
 	// Private Method
 	void generateSecretCode();
-	void checkCorrectForIncorrect(std::vector<int>& checkedDigits, const code& guess) const;
+	void checkCorrectForIncorrect(std::vector<int>& checkedDigits, 
+		const code& guess) const;
 
 	// Static Member Functions
 	static bool find(const std::vector<int>& v, const int& digit);

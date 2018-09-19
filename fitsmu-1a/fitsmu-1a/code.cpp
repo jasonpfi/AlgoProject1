@@ -136,7 +136,8 @@ int code::checkCorrect(const code & guess) const
 //                code that have already been mathched to the user's guess
 // guess: The code object containing the secret code guessed by
 //        the player
-void code::checkCorrectForIncorrect(std::vector<int>& checkedDigits, const code& guess) const
+void code::checkCorrectForIncorrect(std::vector<int>& checkedDigits, 
+	const code& guess) const
 {
 	for (int i = 0; i < this->codeLen; i++)
 	{
