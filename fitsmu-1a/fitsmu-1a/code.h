@@ -23,23 +23,31 @@ class code
 {
 public:
 
+  // Constructors
 	code();
 	code(int codeLen, int maxDig);
 	code(const std::vector<int>& secret, const int& maxDigit);
 
+  // Non-Static Member Functions
 	void printCode() const;
 	code generateUserCode();
 	bool checkValidity() const;
 	int checkCorrect(const code& guess) const;
 	int checkIncorrect(const code& guess) const;
 	codeGuess checkUserInput(const code& userCode) const;
+  void checkCorrectForIncorrect(std::vector<int>& checkedDigits, const code& guess) const;
 	bool checkWin(const codeGuess& codeGuessOutput) const;
-	static bool find(const std::vector<int>& v, const int& digit);
+
+  // Static Member Functions
+	static bool find(const std::vector<int>& v, const int digit);
 
 private:
 
+  // Fields
 	int codeLen;
 	int maxDig;
 	std::vector<int> secret;
+
+  // Private Method
 	void generateSecretCode();
 };
