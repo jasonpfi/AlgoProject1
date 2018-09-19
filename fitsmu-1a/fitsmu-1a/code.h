@@ -4,7 +4,7 @@
 // Justin Fitch
 // Sam Smucny
 //
-// code.h: header file for code class and code Guess
+// code.h: header file for code class and codeGuess
 
 #pragma once
 #include <iostream>
@@ -20,8 +20,8 @@ struct codeGuess
 // correctDigitIncorrectPlacement: how many digits were guessed
 //                                  correctly in the incorrect positions
 {
-	int correctDigitCorrectPlacement;
-	int correctDigitIncorrectPlacement;
+	 int correctDigitCorrectPlacement;
+	 int correctDigitIncorrectPlacement;
 };
 
 class code
@@ -31,34 +31,34 @@ class code
 {
 public:
 
-	// Constructors
-	code();
-	code(const int& codeLen, const int& maxDig);
-	code(const std::vector<int>& secret, const int& maxDigit);
+// Constructors
+	 code();
+	 code(const int& codeLen, const int& maxDig);
+	 code(const std::vector<int>& secret, const int& maxDigit);
 
-	// Non-Static Member Functions
-	void printCode() const;
-	code generateUserCode() const;
-	bool checkValidity() const;
-	int checkCorrect(const code& guess) const;
-	int checkIncorrect(const code& guess) const;
-	codeGuess checkUserInput(const code& userCode) const;
-	bool checkWin(const codeGuess& codeGuessOutput) const;
+// Non-Static Member Functions
+	 void printCode() const;
+	 int checkCorrect(const code& guess) const;
+	 int checkIncorrect(const code& guess) const;
+	 bool checkValidity() const;
+	 bool checkWin(const codeGuess& codeGuessOutput) const;
+	 code generateUserCode() const;
+	 codeGuess checkUserInput(const code& userCode) const;
 
-  static code acceptInput();
+   static code acceptInput();
 
 private:
 
-	// Fields
-	int codeLen;
-	int maxDig;
-	std::vector<int> secret;
+// Fields
+	 int codeLen;
+	 int maxDig;
+	 std::vector<int> secret;
 
-	// Private Method
-	void generateSecretCode();
-	void checkCorrectForIncorrect(std::vector<int>& checkedDigits,
-		const code& guess) const;
+// Private Method
+	 void generateSecretCode();
+	 void checkCorrectForIncorrect(std::vector<int>& checkedDigits,const code&
+       guess) const;
 
-	// Static Member Functions
-	static bool find(const std::vector<int>& v, const int& digit);
-};
+// Static Member Functions
+ 	 static bool find(const std::vector<int>& v, const int& digit);
+};// End of Code class Declaration

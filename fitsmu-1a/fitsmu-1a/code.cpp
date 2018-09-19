@@ -11,9 +11,9 @@
 code::code()
 // Empty Constructor
 {
-	codeLen = 1;
-	maxDig = 1;
-	generateSecretCode();
+	 codeLen = 1;
+   maxDig = 1;
+	 generateSecretCode();
 }
 
 code::code(const int& codeLen, const int& maxDig)
@@ -23,9 +23,9 @@ code::code(const int& codeLen, const int& maxDig)
 // codeLen: Defines the length of the secret code
 // maxDig: Defines the maximum possible digit in the code
 {
-	this->codeLen = codeLen;
-	this->maxDig = maxDig;
-	generateSecretCode();
+	 this->codeLen = codeLen;
+	 this->maxDig = maxDig;
+	 generateSecretCode();
 }
 
 code::code(const std::vector<int>& newSecret, const int& maxDigit)
@@ -34,9 +34,9 @@ code::code(const std::vector<int>& newSecret, const int& maxDigit)
 // newSecret: Vector containing the integers of a secret code
 // maxDigit: Defines the maximum possible digit in the code
 {
-	secret = newSecret;
-	codeLen = newSecret.size();
-	maxDig = maxDigit;
+	 secret = newSecret;
+	 codeLen = newSecret.size();
+	 maxDig = maxDigit;
 }
 
 code code::acceptInput()
@@ -44,24 +44,28 @@ code code::acceptInput()
 // Asks the user multiple again if input is invalid.
 {
 
-	int codeLength;
-	int maxDigit;
+	 int codeLength;
+	 int maxDigit;
 
-	std::cout << "Please enter the desired length of the secret code: ";
-	std::cin >> codeLength;
-	std::cout << "Please enter the maximum digit you want to be in the secret code: ";
-	std::cin >> maxDigit;
+	 std::cout << "Please enter the desired length of the secret code: ";
+	 std::cin >> codeLength;
+	 std::cout << "Please enter the maximum digit you want to be in the"
+                "secret code: ";
+	 std::cin >> maxDigit;
 
-	if (codeLength <= 0 || maxDigit <= 0)
-	{
-		std::cout << "One or both of the values you entered were not valid. Please choose two non negative integers." << std::endl;
-		return acceptInput();
-	}
-	else
-	{
-		return code(codeLength, maxDigit);
-	}
-}
+	 if (codeLength <= 0 || maxDigit <= 0)
+	 {
+      std::cout << "One or both of the values you entered were not valid."
+                   "Please choose two non negative integers." << std::endl;
+		  return acceptInput();
+	 }
+
+	 else
+	 {
+		  return code(codeLength, maxDigit);
+	 }
+
+} // End of acceptInput()
 
 bool code::find(const std::vector<int>& v, const int& digit)
 // Check if the passed integer is contained in the passed vector
@@ -72,13 +76,13 @@ bool code::find(const std::vector<int>& v, const int& digit)
 //    contains the digit
 // digit: Vector is checked to see if it contains this int
 {
-	for (int i = 0; i < v.size(); i++)
-	{
-		if (v.at(i) == digit)
-			return true;
-	}
+	 for (int i = 0; i < v.size(); i++)
+	 {
+		  if (v.at(i) == digit)
+			   return true;
+	 }
 
-	return false;
+	 return false;
 }
 
 bool code::checkWin(const codeGuess& codeGuessOutput) const
@@ -89,7 +93,7 @@ bool code::checkWin(const codeGuess& codeGuessOutput) const
 //                  user code against the secret code. Passed by reference
 //                  so the struct in the main funtion can be changed
 {
-	return codeGuessOutput.correctDigitCorrectPlacement == this->codeLen;
+	 return codeGuessOutput.correctDigitCorrectPlacement == this->codeLen;
 }
 
 codeGuess code::checkUserInput(const code& userCode) const
@@ -103,11 +107,11 @@ codeGuess code::checkUserInput(const code& userCode) const
 // userCode: The code object containing the code guessed by
 //           the player
 {
-	codeGuess codeGuessOutput;
-	codeGuessOutput.correctDigitCorrectPlacement = checkCorrect(userCode);
-	codeGuessOutput.correctDigitIncorrectPlacement = checkIncorrect(userCode);
+	 codeGuess codeGuessOutput;
+	 codeGuessOutput.correctDigitCorrectPlacement = checkCorrect(userCode);
+	 codeGuessOutput.correctDigitIncorrectPlacement = checkIncorrect(userCode);
 
-	return codeGuessOutput;
+	 return codeGuessOutput;
 }
 
 bool code::checkValidity() const
@@ -115,30 +119,30 @@ bool code::checkValidity() const
 // the maximum user input digit is <= the maximum digit defined
 // in the secret code
 {
-	for (int i = 0; i < codeLen; i++)
-	{
-		if (this->secret.at(i) > this->maxDig)
-			return false;
-	}
+	 for (int i = 0; i < codeLen; i++)
+	 {
+		  if (this->secret.at(i) > this->maxDig)
+			   return false;
+	 }
 
-	return true;
+	 return true;
 }
 
 code code::generateUserCode() const
 // Creates the vector containing the user code by asking for
 // user input
 {
-	code userCode(this->codeLen, this->maxDig);
-	userCode.secret.resize(this->codeLen);
+	 code userCode(this->codeLen, this->maxDig);
+	 userCode.secret.resize(this->codeLen);
 
-	for (int i = 0; i < this->codeLen; i++)
-	{
-		std::cout << "Digit " << i << ": ";
-		std::cin >> userCode.secret.at(i);
-	}
+	 for (int i = 0; i < this->codeLen; i++)
+	 {
+		  std::cout << "Digit " << i << ": ";
+		  std::cin >> userCode.secret.at(i);
+	 }
 
-	return userCode;
-}
+	 return userCode;
+}// end of generateUserCode
 
 int code::checkCorrect(const code & guess) const
 // Returns the number of items that were guessed
@@ -147,22 +151,26 @@ int code::checkCorrect(const code & guess) const
 // guess: the code object containing the secret code guessed by
 //        the player
 {
-	int correct = 0;
-	for (int i = 0; i < this->secret.size(); i++)
-	{
-		if (guess.secret.at(i) == this->secret.at(i))
-			correct++;
-	}
+	 int correct = 0;
 
-	return correct;
-}
 
-void code::checkCorrectForIncorrect(std::vector<int>& checkedDigits,
-	const code& guess) const
+   for (int i = 0; i < this->secret.size(); i++)
+	 {
+		  if (guess.secret.at(i) == this->secret.at(i))
+			   correct++;
+	 }
+
+	 return correct;
+}// end of checkCorrect()
+
+void code::checkCorrectForIncorrect(std::vector<int>& checkedDigits,const code&
+    guess) const
 // Check how many digits in the user code are in the correct place in
 // the secret code
-// Adds the index of these correctly placed digits into the checkedDigits vector
-// so the code::checkIncorrect method does not mistakenly take a correctly placed
+// Adds the index of these correctly placed digits into the checkedDigits
+// vector
+// so the code::checkIncorrect method does not mistakenly take a correctly
+// placed
 // digit for an incorrect one (i.e. if the digit was correctly placed at index 4,
 // but another instace of the digit is as index 1)
 //
@@ -171,11 +179,11 @@ void code::checkCorrectForIncorrect(std::vector<int>& checkedDigits,
 // guess: The code object containing the secret code guessed by
 //        the player
 {
-	for (int i = 0; i < this->codeLen; i++)
-	{
-		if (guess.secret.at(i) == this->secret.at(i))
-			checkedDigits.push_back(i);
-	}
+	 for (int i = 0; i < this->codeLen; i++)
+	 {
+		  if (guess.secret.at(i) == this->secret.at(i))
+			   checkedDigits.push_back(i);
+	 }
 }
 
 int code::checkIncorrect(const code& guess) const
@@ -188,59 +196,59 @@ int code::checkIncorrect(const code& guess) const
 // guess: The code object containing the secret code guessed by
 //        the player
 {
-	// Array containing digits already checked in the secret code
-	std::vector<int> checkedDigitsSecret;
-	std::vector<int> checkedDigitsUser;
-	int correctDigitIncorrectPosition = 0;
+// Array containing digits already checked in the secret code
+	 std::vector<int> checkedDigitsSecret;
+	 std::vector<int> checkedDigitsUser;
+	 int correctDigitIncorrectPosition = 0;
 
-	// Called to preallocate all indices that have correct guesses in
-	// correct positions
-	this->checkCorrectForIncorrect(checkedDigitsSecret, guess);
-	this->checkCorrectForIncorrect(checkedDigitsUser, guess);
+// Called to preallocate all indices that have correct guesses in
+// correct positions
+	 this->checkCorrectForIncorrect(checkedDigitsSecret, guess);
+	 this->checkCorrectForIncorrect(checkedDigitsUser, guess);
 
-	// Loop to check through both the user guess and the secret code and
-	// compare their digits
-	for (int i = 0; i < guess.codeLen; i++)
-	{
-		for (int j = 0; j < this->codeLen; j++)
-		{
-			if (j != i &&
-				!code::find(checkedDigitsSecret, j) &&
-				!code::find(checkedDigitsUser, i) &&
-				(this->secret.at(j) == guess.secret.at(i)))
-			{
-				correctDigitIncorrectPosition++;
-				checkedDigitsSecret.push_back(j);
-				checkedDigitsUser.push_back(i);
-				break; // necessary to not count multiple instances of digit placed incorrectly
-			}
-		}
-	}
+// Loop to check through both the user guess and the secret code and
+// compare their digits
+	 for (int i = 0; i < guess.codeLen; i++)
+	 {
+		  for (int j = 0; j < this->codeLen; j++)
+		  {
+			   if (j != i && !code::find(checkedDigitsSecret, j) &&
+             !code::find(checkedDigitsUser, i) && (this->secret.at(j) ==
+             guess.secret.at(i)))
+			   {
+				    correctDigitIncorrectPosition++;
+				    checkedDigitsSecret.push_back(j);
+				    checkedDigitsUser.push_back(i);
+				    break; // necessary to not count multiple instances
+			   }
+		  }
+	 }// End of "i" for loop
 
-	return correctDigitIncorrectPosition;
-}
+	 return correctDigitIncorrectPosition;
+}// End of checkIncorrect()
 
 void code::generateSecretCode()
 // Creates the secret code based on the previous user input,
 // defining the maximum digit and the code length. The rand()
 // funtion is used to create a random code
 {
-	int randomNumber;
+	 int randomNumber;
 
-	for (int i = 0; i < codeLen; i++)
-	{
-		// generate random number from 0 to maxDig
-		randomNumber = rand() % (maxDig + 1);
-		secret.push_back(randomNumber);
-	}
+	 for (int i = 0; i < codeLen; i++)
+	 {
+	 // generate random number from 0 to maxDig
+		  randomNumber = rand() % (maxDig + 1);
+		  secret.push_back(randomNumber);
+	 }
 }
 
 void code::printCode() const
 // Print the code, used for error checking
 {
-	for (int i = 0; i < secret.size(); i++)
-	{
-		std::cout << secret.at(i) << ", ";
-	}
-	std::cout << std::endl;
+	 for (int i = 0; i < secret.size(); i++)
+	 {
+		  std::cout << secret.at(i) << ", ";
+	 }
+
+   std::cout << std::endl;
 }
