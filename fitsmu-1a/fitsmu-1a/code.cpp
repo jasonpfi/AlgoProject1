@@ -39,6 +39,30 @@ code::code(const std::vector<int>& newSecret, const int& maxDigit)
 	maxDig = maxDigit;
 }
 
+code code::acceptInput()
+// Read data from User's keyboard to initialize the code.
+// Asks the user multiple again if input is invalid.
+{
+
+	int codeLength;
+	int maxDigit;
+
+	std::cout << "Please enter the desired length of the secret code: ";
+	std::cin >> codeLength;
+	std::cout << "Please enter the maximum digit you want to be in the secret code: ";
+	std::cin >> maxDigit;
+
+	if (codeLength <= 0 || maxDigit <= 0)
+	{
+		std::cout << "One or both of the values you entered were not valid. Please choose two non negative integers." << std::endl;
+		return acceptInput();
+	}
+	else
+	{
+		return code(codeLength, maxDigit);
+	}
+}
+
 bool code::find(const std::vector<int>& v, const int& digit)
 // Check if the passed integer is contained in the passed vector
 // This is a static method because has no instance importance but is

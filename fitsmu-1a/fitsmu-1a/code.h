@@ -45,6 +45,8 @@ public:
 	codeGuess checkUserInput(const code& userCode) const;
 	bool checkWin(const codeGuess& codeGuessOutput) const;
 
+  static code acceptInput();
+
 private:
 
 	// Fields
@@ -54,7 +56,7 @@ private:
 
 	// Private Method
 	void generateSecretCode();
-	void checkCorrectForIncorrect(std::vector<int>& checkedDigits, 
+	void checkCorrectForIncorrect(std::vector<int>& checkedDigits,
 		const code& guess) const;
 
 	// Static Member Functions

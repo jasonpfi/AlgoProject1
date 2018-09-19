@@ -39,36 +39,12 @@ int main()
 	auto b = secretCode.checkUserInput(code({ 2,1,2,2,2 }, 9));
 	auto c = secretCode.checkUserInput(code({ 1,3,3,4,5 }, 9));
 
-	std::cout << "5, 0, 3, 2, 6  (" << a.correctDigitCorrectPlacement 
+	std::cout << "5, 0, 3, 2, 6  (" << a.correctDigitCorrectPlacement
 		<< ", " << a.correctDigitIncorrectPlacement << ")" << std::endl;
-	std::cout << "2, 1, 2, 2, 2  (" << b.correctDigitCorrectPlacement 
+	std::cout << "2, 1, 2, 2, 2  (" << b.correctDigitCorrectPlacement
 		<< ", " << b.correctDigitIncorrectPlacement << ")" << std::endl;
-	std::cout << "1, 3, 3, 4, 5  (" << c.correctDigitCorrectPlacement 
+	std::cout << "1, 3, 3, 4, 5  (" << c.correctDigitCorrectPlacement
 		<< ", " << c.correctDigitIncorrectPlacement << ")" << std::endl;
 
 	std::cin.get();
-}
-
-code acceptInput()
-// Read data from User's keyboard to initialize the code.
-// Asks the user multiple again if input is invalid.
-{
-
-	int codeLength;
-	int maxDigit;
-
-	std::cout << "Please enter the desired length of the secret code: ";
-	std::cin >> codeLength;
-	std::cout << "Please enter the maximum digit you want to be in the secret code: ";
-	std::cin >> maxDigit;
-
-	if (codeLength <= 0 || maxDigit <= 0)
-	{
-		std::cout << "One or both of the values you entered were not valid. Please choose two non negative integers." << std::endl;
-		return acceptInput();
-	}
-	else
-	{
-		return code(codeLength, maxDigit);
-	}
 }
