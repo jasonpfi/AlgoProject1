@@ -13,7 +13,8 @@ code::code()
 //
 // codeLen: Defines the length of the secret code
 // maxDig: Defines the maximum possible digit in the code
-code::code(int codeLen, int maxDig)
+code::code(int codeLen,
+           int maxDig)
 {
 	this->codeLen = codeLen;
 	this->maxDig = maxDig;
@@ -24,7 +25,8 @@ code::code(int codeLen, int maxDig)
 //
 // newSecret: Vector containing the integers of a secret code
 // maxDigit: Defines the maximum possible digit in the code
-code::code(const std::vector<int>& newSecret, const int& maxDigit)
+code::code(const std::vector<int>& newSecret,
+           const int& maxDigit)
 {
 	secret = newSecret;
 	codeLen = newSecret.size();
@@ -38,7 +40,8 @@ code::code(const std::vector<int>& newSecret, const int& maxDigit)
 // v: Vector of integers populated by function, if "this" object
 //    contains the digit
 // digit: Vector is checked to see if it contains this int
-bool code::find(const std::vector<int>& v, const int digit)
+bool code::find(const std::vector<int>& v,
+                const int digit)
 {
 	for (int i = 0; i < v.size(); i++)
 	{
@@ -140,7 +143,8 @@ int code::checkCorrect(const code & guess) const
 //                 code that have already been mathched to the user's guess
 //  guess: The code object containing the secret code guessed by
 //         the player
-void code::checkCorrectForIncorrect(std::vector<int>& checkedDigits,const code& guess) const{
+void code::checkCorrectForIncorrect(std::vector<int>& checkedDigits,
+                                    const code& guess) const{
   for (int i = 0; i < this->codeLen; i++)
   {
     if (guess.secret.at(i) == this->secret.at(i))
@@ -174,7 +178,10 @@ int code::checkIncorrect(const code& guess) const
 	{
 		for (int j = 0; j < this->codeLen; j++)
 		{
-			if (j != i && !code::find(checkedDigitsSecret, j) && !code::find(checkedDigitsUser, i) && (this->secret.at(j) == guess.secret.at(i)))
+			if (j != i &&
+          !code::find(checkedDigitsSecret, j) &&
+          !code::find(checkedDigitsUser, i) &&
+          (this->secret.at(j) == guess.secret.at(i)))
 			{
 				correctDigitIncorrectPosition++;
 				checkedDigitsSecret.push_back(j);
