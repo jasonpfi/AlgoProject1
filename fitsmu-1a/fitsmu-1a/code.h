@@ -31,12 +31,12 @@ class code
 {
 public:
 
-// Constructors
+   // Constructors
 	 code();
 	 code(const int& codeLen, const int& maxDig);
 	 code(const std::vector<int>& secret, const int& maxDigit);
 
-// Non-Static Member Functions
+   // Non-Static Member Functions
 	 void printCode() const;
 	 int checkCorrect(const code& guess) const;
 	 int checkIncorrect(const code& guess) const;
@@ -45,20 +45,21 @@ public:
 	 code generateUserCode() const;
 	 codeGuess checkUserInput(const code& userCode) const;
 
+   // Public static member function
 	 static code acceptInput();
 
 private:
 
-// Fields
+   // Fields
 	 int codeLen;
 	 int maxDig;
 	 std::vector<int> secret;
 
-// Private Method
+   // Private Method
 	 void generateSecretCode();
 	 void checkCorrectForIncorrect(std::vector<int>& checkedDigits,const code&
        guess) const;
 
-// Static Member Functions
+   // Static Member Functions
  	 static bool find(const std::vector<int>& v, const int& digit);
-};// End of Code class Declaration
+}; // End of Code class Declaration

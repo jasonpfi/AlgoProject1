@@ -26,24 +26,24 @@
 // Main function, entry point for application
 int main()
 {
-// Seed the random funtion with the time of execution
+   // Seed the random funtion with the time of execution
 	 srand(time(NULL));
 
-// Accept user Input and create secret code object
+   // Accept user Input and create secret code object
    std::cout << "Welcome to the MASTERMIND Game!\n";
 
-// Instantiate code object - 5 digits long and max digit of 9
+   // Instantiate code object - 5 digits long and max digit of 9
    code secretCode = code(5,9);
 
-// Print out the secret code
+   // Print out the secret code
 	 secretCode.printCode();
 
-// Create User code object with guess as secret
+   // Create User code object with guess as secret
 	 auto a = secretCode.checkUserInput(code({ 5,0,3,2,6 }, 9));
 	 auto b = secretCode.checkUserInput(code({ 2,1,2,2,2 }, 9));
 	 auto c = secretCode.checkUserInput(code({ 1,3,3,4,5 }, 9));
 
-// Print out user code and comparison output
+   // Print out user code and comparison output
 	 std::cout << "5, 0, 3, 2, 6  (" << a.correctDigitCorrectPlacement << ", " <<
      a.correctDigitIncorrectPlacement << ")" << std::endl;
 
@@ -53,6 +53,6 @@ int main()
    std::cout << "1, 3, 3, 4, 5  (" << c.correctDigitCorrectPlacement << ", " <<
      c.correctDigitIncorrectPlacement << ")" << std::endl;
 
-// Wait for user input to end program
+   // Wait for user input to end program
 	 std::cin.get();
 }
