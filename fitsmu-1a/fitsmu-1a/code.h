@@ -45,7 +45,7 @@ public:
 	 code generateUserCode() const;
 	 codeGuess checkUserInput(const code& userCode) const;
 
-   static code acceptInput();
+	 static code acceptInput();
 
 private:
 
